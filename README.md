@@ -4,7 +4,7 @@ This exercise is part of Module 16 from the TWN DevOps Bootcamp. In Module 16, w
 
 ---
 <a id="demo2"></a>
-# 🚨 Demo 3 –  Configure Alerting for 3rd Party App
+# 🚨 Demo 3 –  Configure Monitoring for 3rd Party App
 # 📌 Objective
 Monitor a Redis service running in Kubernetes using Prometheus and Grafana dashboards.
 
