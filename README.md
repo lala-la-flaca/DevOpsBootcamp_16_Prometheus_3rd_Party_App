@@ -47,13 +47,12 @@ Monitor a Redis service running in Kubernetes using Prometheus and Grafana dashb
    ```bash
    helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
    ```
-   <img src="" width=800/>
    
 5. Update the Helm repository.
    ```bash
    helm repo update
    ```
-   <img src="" width=800/>
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_16_Prometheus_3rd_Party_App/blob/main/Img/2%20add%20the%20prometheus%20repository%20and%20update%20it.PNG" width=800/>
    
 6. Install the Redis Exporter chart in the monitoring namespace.
    
@@ -65,17 +64,17 @@ Monitor a Redis service running in Kubernetes using Prometheus and Grafana dashb
      helm install redis-exporter prometheus-community/prometheus-redis-exporter -n monitoring. <br>
    ```
    
-   <img src="" width=800/>
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_16_Prometheus_3rd_Party_App/blob/main/Img/3%20install%20chart.PNG" width=800/>
    
 8. Verify that the Redis Exporter Pod is running.
     
     ```bash
     kubectl get pods -n monitoring
     ```
-    <img src="" width=800/>
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_16_Prometheus_3rd_Party_App/blob/main/Img/4%20check%20redis%20exporter%20pod.png" width=800/>
     
 9. Access Prometheus Web UI and confirm that the Redis exporter target appears in the target list.
-    <img src="" width=800/>
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_16_Prometheus_3rd_Party_App/blob/main/Img/5%20new%20target%20dded.png" width=800/>
 
 ## Create Redis PrometheusRules
 09. Create a redis-rules.yaml file and Add the PrometheusRules for Redis.
@@ -90,36 +89,32 @@ Monitor a Redis service running in Kubernetes using Prometheus and Grafana dashb
     ```bash
     kubectl apply -f redis-rules.yaml -n monitoring
     ```
-    <img src="" width=800/>
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_16_Prometheus_3rd_Party_App/blob/main/Img/6%20applying%20redis%20rules.png" width=800/>
     
 11. Verify that the rules has been added to the Prometheus Alerts page.
-    <img src="" width=800/>
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_16_Prometheus_3rd_Party_App/blob/main/Img/7%20rdis%20rules%20available%20prometheus%20alerts.PNG" width=800/>
 
 ## Create Dashboard.
 12. Access Grafana dashboards.
 
-    <img src="" width=800/>
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_16_Prometheus_3rd_Party_App/blob/main/Img/8%20adding%20a%20new%20dashbaord.png" width=800/>
     
 13. Search for the Redis Exporter Dashboard.
 
-    <img src="" width=800/>
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_16_Prometheus_3rd_Party_App/blob/main/Img/9%20search%20the%20desired%20dashboard.png" width=800/>
     
 14. Copy the Dashboard ID.
-
-    <img src="" width=800/>
     
 15. Create a New Dashboard.
-
-    <img src="" width=800/>
     
 16. Import the Redis Exporter dashboard using the dashbaord ID.
 
-    <img src="" width=800/>
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_16_Prometheus_3rd_Party_App/blob/main/Img/10%20dashboard%20id.png" width=800/>
     
 17. Verify that the redis-exporter endpoint match the dashboard data.
 
-    <img src="" width=800/>
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_16_Prometheus_3rd_Party_App/blob/main/Img/12%20endpoint%20redis%20exporter.png" width=800/>
     
 18. Confirm that the dashboard displays metrics correctly.
 
-    <img src="" width=800/>
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_16_Prometheus_3rd_Party_App/blob/main/Img/13%20dashbard%202.PNG" width=800/>
