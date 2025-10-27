@@ -19,7 +19,7 @@ Monitor a Redis service running in Kubernetes using Prometheus and Grafana dashb
 * Redis: Target application for monitoring.
 
 # 🎯 Features
-  ✅ Deplo Redis via Helm Chart.<br>
+  ✅ Deploy Redis and Redis Exporter via Helm Chart.<br>
   📁 Add a Redis dashboard to Grafana.<br>
   ⚙️ Sets up rules for redis downtime or high connections.<br>
   
@@ -34,33 +34,82 @@ Monitor a Redis service running in Kubernetes using Prometheus and Grafana dashb
 
 # ⚙️ Project Configuration
 ## Redis Pod
-1. Use EKS service from Demo 1 to deploy redis app.
-2. Use the config-microoservice.yaml to deploy redis. The file used in the kubernetes module.
-3. Verify that the the Redids pod is working correctly.
+1. Use the EKS service from Demo 1 to deploy the Redis application.
+2. Deploy redis using the config-microoservice.yaml file from the Kubernetes module.
+3. Verify that the Redids pod is working correctly.
+   ```bash
+   kubectl get pods
+   ```
 
 ## Install Prometheus  Redis Exporter
-5. Add the Prometheus helm repository
-6. Update the helm repository.
-7. Install the Redis Exporter chart.
+4. Add the Prometheus Helm repository.
+   
+   ```bash
+   helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+   ```
+   <img src="" width=800/>
+   
+5. Update the Helm repository.
+   ```bash
+   helm repo update
+   ```
+   <img src="" width=800/>
+   
+6. Install the Redis Exporter chart in the monitoring namespace.
    details><summary><strong>Prometheus Redis Exporter:</strong></summary>
    Prometheus Redis Exporter is a tool that collects metrics from a Redis instance and exposes them in a format that Prometheus can scrape and monitor
    </details>
-8. Verify that the Redis Exporter Pods is running.
-9. Access Prometheus Web UI and verify that the Redis exporter target has been added.
+   ```bash
+   helm install redis-exporter prometheus-community/prometheus-redis-exporter -n monitoring
+   ```
+   <img src="" width=800/>
+   
+07. Verify that the Redis Exporter Pod is running.
+    
+    ```bash
+    kubectl get pods -n monitoring
+    ```
+    <img src="" width=800/>
+    
+08. Access Prometheus Web UI and confirm that the Redis exporter target appears in the target list.
+    <img src="" width=800/>
 
 ## Create Redis PrometheusRules
-10. Add the PrometheusRules to a redis-rules.yaml file.
+09. Create a redis-rules.yaml file and Add the PrometheusRules for Redis.
     details><summary><strong>Prometheus Rules for 3er PArty Apps: Exporter:</strong></summary>
-   You can always use predefined dashboards for third-party apps. [Prometheus Rules 3rd Party Apps](https://samber.github.io/awesome-prometheus-alerts/rules#redis)
+    you can use predefined dashboards and alert rules for Redis and other third-party applications [PrometheusRules 3rd-Party Apps](https://samber.github.io/awesome-prometheus-alerts/rules#redis)
    </details>
-12. Apply the redis-rules.yaml file
-13. Verify that the rules has been added to the Prometheus Alerts.
+   ```bash
+   ```
+   <img src="" width=800/>
+   
+10. Apply the Redis rules file.
+    ```bash
+    kubectl apply -f redis-rules.yaml -n monitoring
+    ```
+    <img src="" width=800/>
+    
+11. Verify that the rules has been added to the Prometheus Alerts page.
+    <img src="" width=800/>
 
 ## Create Dashboard.
-14. Access Grafana dashboards
-15. Search for the Redis Exporter Dashboard
-16. Copy the Dashboard ID
-17. Create a New Dashboard
-18. Import the Redis Exporter dashboard using the dashbaord ID.
-19. Verify that the redis-exporter endpoint match the dashboard.
-20. Verity the dashboard.
+12. Access Grafana dashboards.
+    <img src="" width=800/>
+    
+13. Search for the Redis Exporter Dashboard.
+    <img src="" width=800/>
+    
+14. Copy the Dashboard ID.
+    <img src="" width=800/>
+    
+15. Create a New Dashboard.
+    <img src="" width=800/>
+    
+16. Import the Redis Exporter dashboard using the dashbaord ID.
+    <img src="" width=800/>
+    
+17. Verify that the redis-exporter endpoint match the dashboard data.
+    <img src="" width=800/>
+    
+18. Confirm that the dashboard displays metrics correctly.
+    <img src="" width=800/>
