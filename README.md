@@ -41,6 +41,7 @@ Monitor a Redis service running in Kubernetes using Prometheus and Grafana dashb
    kubectl get pods
    ```
 
+
 ## Install Prometheus  Redis Exporter
 4. Add the Prometheus Helm repository.
    
@@ -65,7 +66,7 @@ Monitor a Redis service running in Kubernetes using Prometheus and Grafana dashb
    ```
    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_16_Prometheus_3rd_Party_App/blob/main/Img/14%20Redis%20Values%20helm.PNG" width=800 />
    
-8. Install the Redis Exporter chart using the values file.
+8. Install the Redis Exporter chart using the values file. [Redis Exporter Helm](https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-redis-exporter)
    
    <details><summary><strong>Prometheus Redis Exporter:</strong></summary>
      Prometheus Redis Exporter is a tool that collects metrics from a Redis instance and exposes them in a format that Prometheus can scrape and monitor
@@ -86,6 +87,7 @@ Monitor a Redis service running in Kubernetes using Prometheus and Grafana dashb
     
 10. Access Prometheus Web UI and confirm that the Redis exporter target appears in the target list.
     <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_16_Prometheus_3rd_Party_App/blob/main/Img/5%20new%20target%20dded.png" width=800/>
+
 
 ## Create Redis PrometheusRules
 09. Create a redis-rules.yaml file and Add the PrometheusRules for Redis.
@@ -134,6 +136,7 @@ Monitor a Redis service running in Kubernetes using Prometheus and Grafana dashb
     
 11. Verify that the rules has been added to the Prometheus Alerts page.
     <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_16_Prometheus_3rd_Party_App/blob/main/Img/7%20rdis%20rules%20available%20prometheus%20alerts.PNG" width=800/>
+
 
 ## Create Dashboard.
 12. Access Grafana dashboards.
