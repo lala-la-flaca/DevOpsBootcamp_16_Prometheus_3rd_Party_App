@@ -63,7 +63,7 @@ Monitor a Redis service running in Kubernetes using Prometheus and Grafana dashb
         release: monitoring
         redisAddress: redis://redis-cart:6379
    ```
-   <img src="" width=800 />
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_16_Prometheus_3rd_Party_App/blob/main/Img/14%20Redis%20Values%20helm.PNG" width=800 />
    
 8. Install the Redis Exporter chart using the values file.
    
@@ -124,7 +124,7 @@ Monitor a Redis service running in Kubernetes using Prometheus and Grafana dashb
                     summary: Redis too many connections (instance {{ $labels.instance }})
                     description: "Redis is running out of connections (> 90% used)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}" 
    ```
-   <img src="" width=800/>
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_16_Prometheus_3rd_Party_App/blob/main/Img/15%20Redis%20Rules%20yaml.png" width=800/>
    
 10. Apply the Redis rules file.
     ```bash
