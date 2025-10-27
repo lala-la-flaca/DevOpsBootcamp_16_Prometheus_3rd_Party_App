@@ -61,10 +61,10 @@ Monitor a Redis service running in Kubernetes using Prometheus and Grafana dashb
      Prometheus Redis Exporter is a tool that collects metrics from a Redis instance and exposes them in a format that Prometheus can scrape and monitor
    </details>
    
-   <br>
    ```
-   helm install redis-exporter prometheus-community/prometheus-redis-exporter -n monitoring
-
+     helm install redis-exporter prometheus-community/prometheus-redis-exporter -n monitoring. <br>
+   ```
+   
    <img src="" width=800/>
    
 8. Verify that the Redis Exporter Pod is running.
