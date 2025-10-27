@@ -57,7 +57,7 @@ Monitor a Redis service running in Kubernetes using Prometheus and Grafana dashb
    
 6. Install the Redis Exporter chart in the monitoring namespace.
    
-   details><summary><strong>Prometheus Redis Exporter:</strong></summary>
+   <details><summary><strong>Prometheus Redis Exporter:</strong></summary>
      Prometheus Redis Exporter is a tool that collects metrics from a Redis instance and exposes them in a format that Prometheus can scrape and monitor
    </details>
    
