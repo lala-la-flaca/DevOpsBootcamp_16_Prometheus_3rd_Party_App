@@ -62,9 +62,9 @@ Monitor a Redis service running in Kubernetes using Prometheus and Grafana dashb
    </details>
    
    <br>
-   ```bash
-   helm install redis-exporter prometheus-community/prometheus-redis-exporter -n monitoring
    ```
+   helm install redis-exporter prometheus-community/prometheus-redis-exporter -n monitoring
+
    <img src="" width=800/>
    
 8. Verify that the Redis Exporter Pod is running.
