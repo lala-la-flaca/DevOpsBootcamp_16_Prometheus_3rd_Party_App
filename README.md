@@ -97,22 +97,29 @@ Monitor a Redis service running in Kubernetes using Prometheus and Grafana dashb
 
 ## Create Dashboard.
 12. Access Grafana dashboards.
+
     <img src="" width=800/>
     
 13. Search for the Redis Exporter Dashboard.
+
     <img src="" width=800/>
     
 14. Copy the Dashboard ID.
+
     <img src="" width=800/>
     
 15. Create a New Dashboard.
+
     <img src="" width=800/>
     
 16. Import the Redis Exporter dashboard using the dashbaord ID.
+
     <img src="" width=800/>
     
 17. Verify that the redis-exporter endpoint match the dashboard data.
+
     <img src="" width=800/>
     
 18. Confirm that the dashboard displays metrics correctly.
+
     <img src="" width=800/>
