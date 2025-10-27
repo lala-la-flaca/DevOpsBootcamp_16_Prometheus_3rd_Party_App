@@ -54,34 +54,76 @@ Monitor a Redis service running in Kubernetes using Prometheus and Grafana dashb
    ```
    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_16_Prometheus_3rd_Party_App/blob/main/Img/2%20add%20the%20prometheus%20repository%20and%20update%20it.PNG" width=800/>
    
-6. Install the Redis Exporter chart in the monitoring namespace.
+6. Create the Redis Values file.
+   ```bash
+    serviceMonitor:
+    # When set true then use a ServiceMonitor to configure scraping
+      enabled: true
+      labels:
+        release: monitoring
+        redisAddress: redis://redis-cart:6379
+   ```
+   <img src="" width=800 />
+   
+8. Install the Redis Exporter chart using the values file.
    
    <details><summary><strong>Prometheus Redis Exporter:</strong></summary>
      Prometheus Redis Exporter is a tool that collects metrics from a Redis instance and exposes them in a format that Prometheus can scrape and monitor
    </details>
    
    ```
-     helm install redis-exporter prometheus-community/prometheus-redis-exporter -n monitoring. <br>
+     helm install redis-exporter prometheus-community/prometheus-redis-exporter -f redis-values.yaml
    ```
    
    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_16_Prometheus_3rd_Party_App/blob/main/Img/3%20install%20chart.PNG" width=800/>
    
-8. Verify that the Redis Exporter Pod is running.
+9. Verify that the Redis Exporter Pod is running.
     
     ```bash
-    kubectl get pods -n monitoring
+    kubectl get pods
     ```
     <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_16_Prometheus_3rd_Party_App/blob/main/Img/4%20check%20redis%20exporter%20pod.png" width=800/>
     
-9. Access Prometheus Web UI and confirm that the Redis exporter target appears in the target list.
+10. Access Prometheus Web UI and confirm that the Redis exporter target appears in the target list.
     <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_16_Prometheus_3rd_Party_App/blob/main/Img/5%20new%20target%20dded.png" width=800/>
 
 ## Create Redis PrometheusRules
 09. Create a redis-rules.yaml file and Add the PrometheusRules for Redis.
-    details><summary><strong>Prometheus Rules for 3er PArty Apps: Exporter:</strong></summary>
-    you can use predefined dashboards and alert rules for Redis and other third-party applications [PrometheusRules 3rd-Party Apps](https://samber.github.io/awesome-prometheus-alerts/rules#redis)
-   </details>
-   ```bash
+
+    <details><summary><strong>Prometheus Rules for 3er PArty Apps: Exporter:</strong></summary>
+        You can use predefined dashboards and alert rules for Redis and other third-party applications [PrometheusRules 3rd-Party Apps](https://samber.github.io/awesome-prometheus-alerts/rules#redis)</details>
+        
+    <br>
+   ```
+        apiVersion: monitoring.coreos.com/v1
+        kind: PrometheusRule
+        metadata:
+          name: redis-rules
+          labels:
+            app: kube-prometheus-stack
+            release: monitoring
+        spec:
+            groups:
+              - name: redis.rules
+                rules:
+                #Rules available at: https://samber.github.io/awesome-prometheus-alerts/rules#redis
+                - alert: RedisDown
+                  expr: redis_up == 0
+                  for: 0m
+                  labels:
+                    severity: critical
+                  annotations:
+                    summary: Redis down (instance {{ $labels.instance }})
+                    description: "Redis instance is down\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+                
+                - alert: RedisTooManyConnections
+                  expr: redis_connected_clients / redis_config_maxclients * 100 > 90
+                  for: 2m
+                  labels:
+                    severity: warning
+                  annotations:
+                    summary: Redis too many connections (instance {{ $labels.instance }})
+                    description: "Redis is running out of connections (> 90% used)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}" 
    ```
    <img src="" width=800/>
    
