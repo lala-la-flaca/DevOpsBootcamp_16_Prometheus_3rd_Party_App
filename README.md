@@ -93,7 +93,8 @@ Monitor a Redis service running in Kubernetes using Prometheus and Grafana dashb
 09. Create a redis-rules.yaml file and Add the PrometheusRules for Redis.
 
     <details><summary><strong>Prometheus Rules for 3er PArty Apps: Exporter:</strong></summary>
-        You can use predefined dashboards and alert rules for Redis and other third-party applications [PrometheusRules 3rd-Party Apps](https://samber.github.io/awesome-prometheus-alerts/rules#redis)</details>
+      You can use predefined dashboards and alert rules for Redis and other third-party applications.<br>
+      [PrometheusRules 3rd-Party Apps](https://samber.github.io/awesome-prometheus-alerts/rules#redis)</details>
     <br>
    ```
         apiVersion: monitoring.coreos.com/v1
